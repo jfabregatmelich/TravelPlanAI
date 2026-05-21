@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUTravelPlanAI - Tu plan de viaje inteligente</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>EUTravelPlanAI</h1>
+            <p>Genera tu plan de viaje inteligente por Europa con IA</p>
+        </header>
+
+        <main>
+            <form id="travelForm">
+                <div class="form-group">
+                    <label for="countries">Selecciona paises (Europa):</label>
+                    <select id="countries" multiple size="5">
+                        <option value="España">España</option>
+                        <option value="Francia">Francia</option>
+                        <option value="Italia">Italia</option>
+                        <option value="Alemania">Alemania</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Reino Unido">Reino Unido</option>
+                        <option value="Holanda">Holanda</option>
+                        <option value="Bélgica">Bélgica</option>
+                        <option value="Suiza">Suiza</option>
+                        <option value="Grecia">Grecia</option>
+                        <option value="Croacia">Croacia</option>
+                        <option value="Austria">Austria</option>
+                    </select>
+                    <small>Mantén Ctrl para seleccionar múltiples paises</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Ciudad principal:</label>
+                    <select id="city" required>
+                        <option value="">Selecciona una ciudad</option>
+                        <optgroup label="España">
+                            <option value="Madrid">Madrid</option>
+                            <option value="Barcelona">Barcelona</option>
+                            <option value="Sevilla">Sevilla</option>
+                            <option value="Valencia">Valencia</option>
+                        </optgroup>
+                        <optgroup label="Francia">
+                            <option value="París">París</option>
+                            <option value="Lyon">Lyon</option>
+                            <option value="Marsella">Marsella</option>
+                        </optgroup>
+                        <optgroup label="Italia">
+                            <option value="Roma">Roma</option>
+                            <option value="Florencia">Florencia</option>
+                            <option value="Venecia">Venecia</option>
+                        </optgroup>
+                        <optgroup label="Alemania">
+                            <option value="Berlín">Berlín</option>
+                            <option value="Múnich">Múnich</option>
+                            <option value="Hamburgo">Hamburgo</option>
+                        </optgroup>
+                        <optgroup label="Portugal">
+                            <option value="Lisboa">Lisboa</option>
+                            <option value="Oporto">Oporto</option>
+                        </optgroup>
+                        <optgroup label="Reino Unido">
+                            <option value="Londres">Londres</option>
+                            <option value="Edimburgo">Edimburgo</option>
+                        </optgroup>
+                        <optgroup label="Holanda">
+                            <option value="Ámsterdam">Ámsterdam</option>
+                        </optgroup>
+                        <optgroup label="Grecia">
+                            <option value="Atenas">Atenas</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="days">Rango de días: <span id="daysValue">3</span></label>
+                    <input type="range" id="days" min="1" max="7" value="3" step="1">
+                    <div class="range-labels">
+                        <span>1 día</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7 días</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="budget">Rango de presupuesto (€): <span id="budgetValue">500</span>€</label>
+                    <input type="range" id="budget" min="200" max="2000" value="500" step="50">
+                    <div class="range-labels">
+                        <span>200€</span><span>500€</span><span>1000€</span><span>1500€</span><span>2000€</span>
+                    </div>
+                </div>
+
+                <button type="submit" id="generateBtn">Generar plan de viaje</button>
+            </form>
+
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Generando tu plan de viaje con IA... Esto puede tomar unos segundos</p>
+            </div>
+
+            <div id="error" class="error hidden"></div>
+
+            <div id="results" class="results hidden">
+                <div class="plan-summary">
+                    <h2>Tu plan de viaje</h2>
+                    <div id="planSummary"></div>
+                </div>
+                <div class="pdf-section">
+                    <button id="downloadPdfBtn" class="btn-pdf">Descargar plan en PDF</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by Google Gemini AI | EUTravelPlanAI</p>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
