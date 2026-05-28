@@ -75,12 +75,3 @@ La aplicación arranca en `http://localhost:8080/frontend/index.html`.
 ## Ejemplo de salida
 
 El directorio incluye `travel_plan_Valencia.pdf` como muestra de un itinerario generado para Valencia con presupuesto moderado. El PDF contiene el desglose por día con actividades, horarios y costes, maquetado con el sistema de layout propio del `PdfController`.
-
----
-
-## Posibles mejoras
-
-- Autenticación de usuarios y guardado de itinerarios en base de datos (Spring Data JPA + PostgreSQL)
-- Soporte multiidioma del prompt y la interfaz
-- Integración con APIs de precios reales (Booking, Google Places)
-- Despliegue en contenedor Docker con variable de entorno para la API key
