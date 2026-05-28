@@ -2,122 +2,156 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EUTravelPlanAI - Tu plan de viaje inteligente</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>TravelPlan AI · EU</title>
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>EUTravelPlanAI</h1>
-            <p>Genera tu plan de viaje inteligente por Europa con IA</p>
-        </header>
-
-        <main>
-            <form id="travelForm">
-                <div class="form-group">
-                    <label for="countries">Selecciona paises (Europa):</label>
-                    <select id="countries" multiple size="5">
-                        <option value="España">España</option>
-                        <option value="Francia">Francia</option>
-                        <option value="Italia">Italia</option>
-                        <option value="Alemania">Alemania</option>
-                        <option value="Portugal">Portugal</option>
-                        <option value="Reino Unido">Reino Unido</option>
-                        <option value="Holanda">Holanda</option>
-                        <option value="Bélgica">Bélgica</option>
-                        <option value="Suiza">Suiza</option>
-                        <option value="Grecia">Grecia</option>
-                        <option value="Croacia">Croacia</option>
-                        <option value="Austria">Austria</option>
-                    </select>
-                    <small>Mantén Ctrl para seleccionar múltiples paises</small>
+    <div class="app-wrapper">
+        <div class="container">
+            <header>
+                <div class="brand-icon">
+                    <i class="fas fa-globe-europe"></i>
                 </div>
-
-                <div class="form-group">
-                    <label for="city">Ciudad principal:</label>
-                    <select id="city" required>
-                        <option value="">Selecciona una ciudad</option>
-                        <optgroup label="España">
-                            <option value="Madrid">Madrid</option>
-                            <option value="Barcelona">Barcelona</option>
-                            <option value="Sevilla">Sevilla</option>
-                            <option value="Valencia">Valencia</option>
-                        </optgroup>
-                        <optgroup label="Francia">
-                            <option value="París">París</option>
-                            <option value="Lyon">Lyon</option>
-                            <option value="Marsella">Marsella</option>
-                        </optgroup>
-                        <optgroup label="Italia">
-                            <option value="Roma">Roma</option>
-                            <option value="Florencia">Florencia</option>
-                            <option value="Venecia">Venecia</option>
-                        </optgroup>
-                        <optgroup label="Alemania">
-                            <option value="Berlín">Berlín</option>
-                            <option value="Múnich">Múnich</option>
-                            <option value="Hamburgo">Hamburgo</option>
-                        </optgroup>
-                        <optgroup label="Portugal">
-                            <option value="Lisboa">Lisboa</option>
-                            <option value="Oporto">Oporto</option>
-                        </optgroup>
-                        <optgroup label="Reino Unido">
-                            <option value="Londres">Londres</option>
-                            <option value="Edimburgo">Edimburgo</option>
-                        </optgroup>
-                        <optgroup label="Holanda">
-                            <option value="Ámsterdam">Ámsterdam</option>
-                        </optgroup>
-                        <optgroup label="Grecia">
-                            <option value="Atenas">Atenas</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="days">Rango de días: <span id="daysValue">3</span></label>
-                    <input type="range" id="days" min="1" max="7" value="3" step="1">
-                    <div class="range-labels">
-                        <span>1 día</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7 días</span>
+                <h1>TravelPlan AI</h1>
+                <p>Generador IA de itinerarios inteligentes a tu medida.</p>
+                
+                <!-- Boton de modo aleatorio dentro del header, alineado a la izquierda -->
+                <div class="randomizer-header">
+                    <label class="switch">
+                        <input type="checkbox" id="randomToggle" aria-label="Activar modo sorpresa">
+                        <span class="slider round"></span>
+                    </label>
+                    <div class="randomizer-text">
+                        <i class="fas fa-dice-d6"></i>
+                        <span>Modo sorpresa</span>
+                        <small>Destino aleatorio</small>
                     </div>
                 </div>
+            </header>
 
-                <div class="form-group">
-                    <label for="budget">Rango de presupuesto (€): <span id="budgetValue">500</span>€</label>
-                    <input type="range" id="budget" min="200" max="2000" value="500" step="50">
-                    <div class="range-labels">
-                        <span>200€</span><span>500€</span><span>1000€</span><span>1500€</span><span>2000€</span>
+            <main>
+                <form id="travelForm" class="form-fields" novalidate>
+                    <!-- Pais principal - selector unico -->
+                    <div class="form-group" id="countryGroup">
+                        <label for="country">
+                            <i class="fas fa-flag-checkered"></i> 
+                            País principal
+                        </label>
+                        <div class="custom-select">
+                            <select id="country" required aria-label="Selecciona el país que deseas visitar">
+                                <option value="">-- Selecciona un país --</option>
+                                <option value="Alemania">Alemania</option>
+                                <option value="Austria">Austria</option>
+                                <option value="Bélgica">Bélgica</option>
+                                <option value="Bulgaria">Bulgaria</option>
+                                <option value="Croacia">Croacia</option>
+                                <option value="Dinamarca">Dinamarca</option>
+                                <option value="Eslovaquia">Eslovaquia</option>
+                                <option value="Eslovenia">Eslovenia</option>
+                                <option value="España">España</option>
+                                <option value="Estonia">Estonia</option>
+                                <option value="Finlandia">Finlandia</option>
+                                <option value="Francia">Francia</option>
+                                <option value="Grecia">Grecia</option>
+                                <option value="Hungría">Hungría</option>
+                                <option value="Irlanda">Irlanda</option>
+                                <option value="Italia">Italia</option>
+                                <option value="Letonia">Letonia</option>
+                                <option value="Lituania">Lituania</option>
+                                <option value="Luxemburgo">Luxemburgo</option>
+                                <option value="Malta">Malta</option>
+                                <option value="Países Bajos">Países Bajos</option>
+                                <option value="Polonia">Polonia</option>
+                                <option value="Portugal">Portugal</option>
+                                <option value="Reino Unido">Reino Unido</option>
+                                <option value="República Checa">República Checa</option>
+                                <option value="Rumanía">Rumanía</option>
+                                <option value="Suecia">Suecia</option>
+                                <option value="Suiza">Suiza</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Ciudad principal: depende del pais seleccionado -->
+                    <div class="form-group" id="cityGroup">
+                        <label for="city">
+                            <i class="fas fa-city"></i> 
+                            Ciudad principal
+                        </label>
+                        <div class="custom-select">
+                            <select id="city" required disabled aria-label="Selecciona la ciudad principal del viaje">
+                                <option value="">-- Primero selecciona un país --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Duracion - arriba -->
+                    <div class="form-group">
+                        <label for="days">
+                            <i class="far fa-calendar-alt"></i> 
+                            Duración: <span id="daysValue">3</span> días
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="days" min="1" max="10" value="3" step="1" 
+                                   aria-label="Selector de duración del viaje en días"
+                                   aria-valuemin="1" aria-valuemax="10" aria-valuenow="3">
+                        </div>
+                        <div class="range-labels" id="daysLabels"></div>
+                    </div>
+
+                    <!-- Presupuesto por dia - abajo -->
+                    <div class="form-group">
+                        <label for="budgetPerDay">
+                            <i class="fas fa-euro-sign"></i> 
+                            Presupuesto por día: <span id="budgetPerDayValue">80</span> €/día
+                            <small style="display: inline-block; margin-left: 8px; font-weight: normal;">
+                                (comida + actividades)
+                            </small>
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="budgetPerDay" min="20" max="200" value="80" step="5" 
+                                   aria-label="Selector de presupuesto por día en euros"
+                                   aria-valuemin="20" aria-valuemax="200" aria-valuenow="80">
+                        </div>
+                        <div class="range-labels" id="budgetPerDayLabels"></div>
+                        <small><i class="fas fa-info-circle"></i> Hay muchas actividades gratuitas. Este presupuesto cubre comidas y experiencias opcionales.</small>
+                    </div>
+
+                    <button type="submit" id="generateBtn">
+                        <i class="fas fa-route"></i> 
+                        Generar plan de viaje
+                    </button>
+                </form>
+
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p><i class="fas fa-brain"></i> IA diseñando tu experiencia europea...</p>
+                </div>
+
+                <div id="error" class="error hidden"></div>
+
+                <div id="results" class="results hidden">
+                    <div class="plan-summary">
+                        <h2><i class="fas fa-map"></i> Tu plan inteligente</h2>
+                        <div id="planSummary"></div>
+                    </div>
+                    <div class="pdf-section">
+                        <button id="downloadPdfBtn" class="btn-pdf">
+                            <i class="fas fa-file-pdf"></i> 
+                            Descargar plan en PDF
+                        </button>
                     </div>
                 </div>
+            </main>
 
-                <button type="submit" id="generateBtn">Generar plan de viaje</button>
-            </form>
-
-            <div id="loading" class="loading hidden">
-                <div class="spinner"></div>
-                <p>Generando tu plan de viaje con IA... Esto puede tomar unos segundos</p>
-            </div>
-
-            <div id="error" class="error hidden"></div>
-
-            <div id="results" class="results hidden">
-                <div class="plan-summary">
-                    <h2>Tu plan de viaje</h2>
-                    <div id="planSummary"></div>
-                </div>
-                <div class="pdf-section">
-                    <button id="downloadPdfBtn" class="btn-pdf">Descargar plan en PDF</button>
-                </div>
-            </div>
-        </main>
-
-        <footer>
-            <p>Powered by Google Gemini AI | EUTravelPlanAI</p>
-        </footer>
+            <footer>
+                <p>Impulsado con Google Gemini API · TravelPlan AI · Joel Fabregat Melich</p>
+            </footer>
+        </div>
     </div>
-
-    <script src="js/app.js"></script>
+    <script src="/frontend/js/app.js"></script>
 </body>
 </html>
