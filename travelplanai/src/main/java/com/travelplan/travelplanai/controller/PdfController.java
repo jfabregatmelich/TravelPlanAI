@@ -127,7 +127,7 @@ public class PdfController {
                 y -= 28;
 
                 SlotResult res;
-                res = writeSlot(page, pages, "Manana",  day.getMorning(),   day.getMorningPrice(),   y);
+                res = writeSlot(page, pages, "Mañana",  day.getMorning(),   day.getMorningPrice(),   y);
                 page = res.page; y = res.y;
                 res = writeSlot(page, pages, "Comida",  day.getLunch(),     day.getLunchPrice(),     y);
                 page = res.page; y = res.y;
